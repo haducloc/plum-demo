@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+
+span.label-required {
+	color: red;
+}
+
+input.field-error, select.field-error, textarea.field-error, div.field-error {
+	border: 1px solid #dc3545;
+}
+
+label.field-label {
+	font-weight: bold;
+}
+
+.messages-info {
+	background: #d5edf8;
+	color: #205791;
+}
+
+.messages-notice {
+	background: #fff6bf;
+	color: #514721;
+}
+
+.messages-warn {
+	background: #fff3cd;
+	color: #856404;
+}
+
+.messages-error {
+	background: #fbe3e4;
+	color: #8a1f11;
+}
+
+.field-error-msg {
+	font-size: 0.875rem;
+	color: #dc3545;
+}
+
+div.messages-wrapper>ul:not(:first-child) {
+	margin-top: 1.0rem;
+}
