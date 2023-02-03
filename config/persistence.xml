@@ -6,7 +6,9 @@
 
 	<persistence-unit name="myDbPU"
 		transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!--provider>org.hibernate.ejb.HibernatePersistence</provider-->
 
 		<class>plum_demo.entities.User</class>
 
