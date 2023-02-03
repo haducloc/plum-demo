@@ -112,7 +112,9 @@ public class AuthController {
 	// returnUrl
 	String returnUrl = request.getParamOrNull(ServletUtils.PARAM_RETURN_URL);
 	if (returnUrl != null) {
-	    return new RedirectResult().location(returnUrl);
+	    ServletUtils.sendRedirect(response, returnUrl);
+	    return ActionResult.EMPTY;
+
 	} else {
 	    return new RedirectResult("index", "main");
 	}

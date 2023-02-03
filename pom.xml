@@ -52,12 +52,12 @@
 		<dependency>
 			<groupId>com.appslandia</groupId>
 			<artifactId>appslandia-common</artifactId>
-			<version>12.2.1</version>
+			<version>12.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.appslandia</groupId>
 			<artifactId>appslandia-plum</artifactId>
-			<version>12.4.0</version>
+			<version>12.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
@@ -69,7 +69,6 @@
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jstl-impl</artifactId>
 			<version>1.2</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
