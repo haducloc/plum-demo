@@ -2,7 +2,7 @@ package plum_demo.services;
 
 import java.util.List;
 
-import com.appslandia.common.utils.AssertUtils;
+import com.appslandia.common.utils.Asserts;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -64,8 +64,9 @@ public class UserService {
 
 		} else {
 		    User dbUser = em.find(User.class, user.getUserId());
-		    AssertUtils.assertStateNotNull(dbUser);
-		    AssertUtils.assertTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to modify the ADMIN user.");
+
+		    Asserts.notNull(dbUser);
+		    Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to modify the ADMIN user.");
 
 		    // Update roles & active only
 		    dbUser.setRoles(user.getRoles());
@@ -92,9 +93,7 @@ public class UserService {
 		tx.begin();
 
 		User dbUser = em.getReference(User.class, userId);
-
-		// Business rules
-		AssertUtils.assertTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to remove the ADMIN user.");
+		Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to remove the ADMIN user.");
 
 		em.remove(dbUser);
 
