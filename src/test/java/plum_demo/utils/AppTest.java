@@ -1,4 +1,4 @@
-package utils;
+package plum_demo.utils;
 
 import org.junit.jupiter.api.Test;
 
