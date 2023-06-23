@@ -20,8 +20,8 @@ public class AppPrincipal extends UserPrincipal {
     static Map<String, Object> createAttributes(int userId, String username) {
 	Map<String, Object> map = new HashMap<>();
 
-	map.put(USER_ID, userId);
-	map.put(USER_NAME, username);
+	map.put(ATTRIBUTE_USER_ID, userId);
+	map.put(ATTRIBUTE_USER_NAME, username);
 
 	return map;
     }
