@@ -3,6 +3,7 @@ package plum_demo.services;
 import java.util.List;
 
 import com.appslandia.common.utils.Asserts;
+import com.appslandia.common.utils.ModelUtils;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
@@ -68,9 +69,7 @@ public class UserService {
 		    Asserts.notNull(dbUser);
 		    Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to modify the ADMIN user.");
 
-		    // Update roles & active only
-		    dbUser.setRoles(user.getRoles());
-		    dbUser.setActive(user.isActive());
+		    ModelUtils.copyProps(dbUser, user, "roles", "active", "dob", "salary");
 		}
 		tx.commit();
 

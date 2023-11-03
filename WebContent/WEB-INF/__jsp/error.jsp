@@ -5,7 +5,7 @@
 <%@ taglib prefix="fx" uri="http://www.appslandia.com/jstl/functions"%>
 
 <!-- @variables
-  page.title=${ctx.esc('error_page.page_title')}
+  page.title=${ctx.escXml('error_page.page_title')}
     __layout=layout
  -->
 

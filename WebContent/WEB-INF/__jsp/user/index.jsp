@@ -5,7 +5,7 @@
 <%@ taglib prefix="fx" uri="http://www.appslandia.com/jstl/functions"%>
 
 <!-- @variables
-  page.title=${ctx.esc('page.user_index')}
+  page.title=${ctx.escXml('page.user_index')}
   __layout=layout
  -->
 
@@ -17,12 +17,14 @@
         <table class="table table-sm table-bordered table-striped table-hover">
           <thead>
             <tr>
-              <th scope="col" colspan="4"><t:actionLink action="edit" class="btn btn-sm btn-secondary fw-semibold">&plus;</t:actionLink></th>
+              <th scope="col" colspan="3"><t:actionLink action="edit" class="btn btn-sm btn-secondary fw-semibold">&plus;</t:actionLink></th>
             </tr>
             <tr>
-              <th scope="col">${ctx.escCt('user.username')}</th>
-              <th scope="col">${ctx.escCt('user.roles')}</th>
-              <th scope="col">${ctx.escCt('user.active')}</th>
+              <th scope="col">${ctx.escXml('user.username')}</th>
+              <th scope="col">${ctx.escXml('user.roles')}</th>
+              <th scope="col">${ctx.escXml('user.active')}</th>
+              <th scope="col">${ctx.escXml('user.dob')}</th>
+              <th scope="col">${ctx.escXml('user.salary')}</th>
             </tr>
           </thead>
           <tbody>
@@ -30,13 +32,17 @@
               <tr>
                 <td>
                   <t:actionLink action="edit" __userId="${item.userId}">
-                     ${fx:escCt(item.username)}
+                     ${fx:escXml(item.username)}
                   </t:actionLink>
                 </td>
                 <td>${item.roles}</td>
                 <td>
-                  <t:checkMark render="${item.active}" />
+                  <c:if test="${item.active}">
+                    &check;
+                  </c:if>
                 </td>
+                <td>${item.dob}</td>
+                <td>${item.salary}</td>
               </tr>
             </t:iterate>
           </tbody>

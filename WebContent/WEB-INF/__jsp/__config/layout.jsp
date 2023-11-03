@@ -18,7 +18,7 @@
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-      <t:actionLink clazz="navbar-brand" action="index" controller="main">${ctx.escCt('app.name')}</t:actionLink>
+      <t:actionLink clazz="navbar-brand" action="index" controller="main">${ctx.escXml('app.name')}</t:actionLink>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -29,10 +29,10 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="adminDrp" data-bs-toggle="dropdown" aria-expanded="false">${ctx.escCt('nav.administrations')}</a>
+            <a class="nav-link dropdown-toggle" href="#" id="adminDrp" data-bs-toggle="dropdown" aria-expanded="false">${ctx.escXml('nav.administrations')}</a>
             <ul class="dropdown-menu" aria-labelledby="adminDrp">
               <li>
-                <t:actionLink clazz="dropdown-item" action="index" controller="user">${ctx.escCt('nav.manage_users')}</t:actionLink>
+                <t:actionLink clazz="dropdown-item" action="index" controller="user">${ctx.escXml('nav.manage_users')}</t:actionLink>
               </li>
             </ul>
           </li>
@@ -41,7 +41,7 @@
         <ul class="navbar-nav d-flex">
           <c:if test="${empty pageContext.request.userPrincipal}">
             <li class="nav-item">
-              <t:actionLink clazz="nav-link" action="login" controller="auth">${ctx.escCt('label.login')}</t:actionLink>
+              <t:actionLink clazz="nav-link" action="login" controller="auth">${ctx.escXml('label.login')}</t:actionLink>
             </li>
           </c:if>
 
@@ -52,10 +52,10 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="authDrp">
                 <li>
-                  <t:actionLink clazz="dropdown-item" action="logout" controller="auth">${ctx.escCt('label.logout')}</t:actionLink>
+                  <t:actionLink clazz="dropdown-item" action="logout" controller="auth">${ctx.escXml('label.logout')}</t:actionLink>
                 </li>
                 <li>
-                  <t:actionLink clazz="dropdown-item" action="changepwd" controller="auth">${ctx.escCt('label.change_password')}</t:actionLink>
+                  <t:actionLink clazz="dropdown-item" action="changepwd" controller="auth">${ctx.escXml('label.change_password')}</t:actionLink>
                 </li>
               </ul>
             </li>
@@ -78,7 +78,10 @@
     <c:if test="${empty requestScope['jakarta.servlet.error.servlet_name'] and not empty messages}">
       <div class="container mb-4">
         <div class="messages-wrapper">
-          <t:messages clazz="mb-0 px-4 py-2 rounded" />
+          <t:messages listClass="mb-0 px-4 py-2 rounded" type="error" />
+          <t:messages listClass="mb-0 px-4 py-2 rounded" type="warn" />
+          <t:messages listClass="mb-0 px-4 py-2 rounded" type="notice" />          
+          <t:messages listClass="mb-0 px-4 py-2 rounded" type="info" />
         </div>
       </div>
     </c:if>

@@ -48,7 +48,7 @@ public class TestController {
 	List<User> list = new ArrayList<>(5000);
 
 	for (int i = 0; i < 5000; i++) {
-	    list.add(new User("username-" + i, "password-" + i, "userroles-" + i, true));
+	    list.add(new User("username-" + i, "password-" + i, "userroles-" + i));
 	}
 	return list;
     }

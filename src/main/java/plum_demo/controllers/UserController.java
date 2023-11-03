@@ -63,7 +63,7 @@ public class UserController {
 		User user = this.userService.getByPk(userId);
 		request.assertNotNull(user);
 
-		ModelUtils.copyProps(model, user, "userId", "username", "roles", "active");
+		ModelUtils.copyProps(model, user, "userId", "username", "roles", "active", "dob", "salary");
 	    }
 
 	    request.storeModel(model);
@@ -101,7 +101,7 @@ public class UserController {
 	    // Save Action
 	    else {
 		User user = new User();
-		ModelUtils.copyProps(user, model, "userId", "username", "password", "roles", "active");
+		ModelUtils.copyProps(user, model, "userId", "username", "password", "roles", "active", "dob", "salary");
 
 		// Hash password
 		if (user.getUserId() == null) {

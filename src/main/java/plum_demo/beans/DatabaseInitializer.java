@@ -38,7 +38,8 @@ public class DatabaseInitializer {
 		tx.begin();
 
 		// Add ADMIN user with ADMIN role
-		em.persist(new User(DbUtils.USER_ADMIN, PasswordDigester.DEFAULT.digest("password"), "ADMIN", true));
+		em.persist(new User(DbUtils.USER_ADMIN, PasswordDigester.DEFAULT.digest("password"), "ADMIN"));
+		em.persist(new User("locha", PasswordDigester.DEFAULT.digest("password"), "ADMIN"));
 
 		tx.commit();
 

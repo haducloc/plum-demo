@@ -5,7 +5,7 @@
 <%@ taglib prefix="fx" uri="http://www.appslandia.com/jstl/functions"%>
 
 <!-- @variables
-  page.title=${ctx.esc('page.user_edit')}
+  page.title=${ctx.escXml('page.user_edit')}
   __layout=layout
  -->
 
@@ -16,48 +16,55 @@
       <div class="card">
         <div class="card-body">
 
-          <t:formErrors clazz="px-4 py-2 rounded" modelLevelOnly="false">
-            <t:fieldOrders>username,password,roles,active</t:fieldOrders>
-          </t:formErrors>
+          <t:errors listClass="px-4 py-2 rounded" fieldOrders="username,password,roles,active" />
 
-          <t:form id="form1" action="edit" __userId="${model.userId}" autocomplete="off">
-            <t:formErrors clazz="px-4 py-2" modelLevelOnly="true" />
+          <t:form id="form1" action="edit" __userId="${model.userId}" method="post">
 
             <input type="hidden" id="formAction" name="formAction" />
 
             <div class="mb-3">
-              <t:fieldLabel field="username" labelKey="user.username" clazz="form-label" required="true" />
-              <t:textBox path="model.username" clazz="form-control" readonly="${not empty model.userId}" />
+              <t:label fieldName="username" labelKey="user.username" clazz="form-label" required="true" />
+              <t:input path="model.username" clazz="form-control" readonly="${not empty model.userId}" />
             </div>
 
             <div class="mb-3">
-              <t:fieldLabel field="password" labelKey="user.password" clazz="form-label" required="true" />
+              <t:label fieldName="password" labelKey="user.password" clazz="form-label" required="true" />
 
               <c:if test="${empty model.userId}">
-                <t:textBox type="password" path="model.password" clazz="form-control" />
+                <t:input type="password" path="model.password" clazz="form-control" />
               </c:if>
 
               <c:if test="${not empty model.userId}">
                 <t:actionLink action="resetpwd" controller="user" clazz="link-secondary d-block">
-                     ${ctx.escCt('label.reset_password')}
+                     ${ctx.escXml('label.reset_password')}
                   </t:actionLink>
               </c:if>
 
             </div>
 
             <div class="mb-3">
-              <t:fieldLabel field="roles" labelKey="user.roles" clazz="form-label" />
-              <t:textBox path="model.roles" clazz="form-control" />
+              <t:label fieldName="roles" labelKey="user.roles" clazz="form-label" />
+              <t:input path="model.roles" clazz="form-control" />
             </div>
 
             <div class="mb-3 form-check">
-              <t:checkbox submitValue="true" path="model.active" clazz="form-check-input mr-2" />
-              <label class="form-check-label" for="active"> ${ctx.escCt('user.active')} </label>
+              <t:checkbox codeValue="true" path="model.active" clazz="form-check-input mr-2" />
+              <t:label fieldName="active" labelKey="user.active" clazz="form-check-label" />
             </div>
+            
+            <div class="mb-3">
+              <t:label fieldName="dob" labelKey="user.dob" clazz="form-label" />
+              <t:input type="date" path="model.dob" clazz="form-control" />
+            </div>
+            
+            <div class="mb-3">
+              <t:label fieldName="salary" labelKey="user.salary" clazz="form-label" />
+              <t:input type="number" path="model.salary" clazz="form-control" step="0.01" />
+            </div>       
 
             <t:button type="submit" id="btnSave" clazz="btn btn-primary px-4" labelKey="label.save"></t:button>&nbsp;
             <t:button type="button" id="btnRemove" clazz="btn btn-danger px-4" labelKey="label.remove" onclick="onRemoveClick()"
-              render="${not empty model.userId and model.username ne pageContext.request.remoteUser}"></t:button>
+                render="${not empty model.userId and model.username ne pageContext.request.remoteUser}"></t:button>
           </t:form>
         </div>
       </div>

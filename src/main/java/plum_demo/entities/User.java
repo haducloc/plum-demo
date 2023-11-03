@@ -1,6 +1,7 @@
 package plum_demo.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,16 +35,19 @@ public class User implements Serializable {
 
     private String roles;
 
-    private boolean active;
+    private boolean active = true;
+
+    private LocalDate dob;
+
+    private Double salary;
 
     public User() {
     }
 
-    public User(String username, String password, String roles, boolean active) {
+    public User(String username, String password, String roles) {
 	this.username = username;
 	this.password = password;
 	this.roles = roles;
-	this.active = active;
     }
 
     public Integer getUserId() {
@@ -84,5 +88,21 @@ public class User implements Serializable {
 
     public void setActive(boolean isActive) {
 	this.active = isActive;
+    }
+
+    public LocalDate getDob() {
+	return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+	this.dob = dob;
+    }
+
+    public Double getSalary() {
+	return salary;
+    }
+
+    public void setSalary(Double salary) {
+	this.salary = salary;
     }
 }

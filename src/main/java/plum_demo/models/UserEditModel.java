@@ -1,5 +1,7 @@
 package plum_demo.models;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotNull;
 
 /**
@@ -20,6 +22,10 @@ public class UserEditModel {
     private String roles;
 
     private boolean active;
+
+    private LocalDate dob;
+
+    private Double salary;
 
     public Integer getUserId() {
 	return userId;
@@ -59,5 +65,21 @@ public class UserEditModel {
 
     public void setActive(boolean active) {
 	this.active = active;
+    }
+
+    public LocalDate getDob() {
+	return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+	this.dob = dob;
+    }
+
+    public Double getSalary() {
+	return salary;
+    }
+
+    public void setSalary(Double salary) {
+	this.salary = salary;
     }
 }
