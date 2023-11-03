@@ -107,7 +107,7 @@
         <dependent-module archiveName="appslandia-common-18.6.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/appslandia-common/appslandia-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="appslandia-plum-17.3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/appslandia-plum/appslandia-plum">
+        <dependent-module archiveName="appslandia-plum-17.4.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/appslandia-plum/appslandia-plum">
             <dependency-type>uses</dependency-type>
         </dependent-module>
                                                                                                                                                                       
