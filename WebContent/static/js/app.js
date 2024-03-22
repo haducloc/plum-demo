@@ -38,28 +38,24 @@ function setCookie(cname, cvalue, exdays, path) {
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=" + path;
 }
 
-function ajax(method, url, queryParams, headerFn, jsonResult, onSuccess, onError, onDone) {
+function ajax(method, url, queryParams, headerFn, onResponse, onNetworkError) {
 	var xhr = new XMLHttpRequest();
 	xhr.open(method, url, true);
 
 	if (headerFn == null) {
 		if (method == 'POST') xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	} else headerFn(xhr);
+	} else
+		headerFn(xhr);
 
 	xhr.onreadystatechange = function() {
 		if (this.readyState === XMLHttpRequest.DONE) {
-			var res = jsonResult ? JSON.parse(xhr.responseText) : xhr.responseText;
-
-			if (this.status === 200) {
-				if (onSuccess != null)
-					onSuccess(res);
-			} else {
-				if (onError != null)
-					onError(res, this.status);
-			}
-			if (onDone != null)
-				onDone(res, this.status);
+			onResponse(xhr.responseText, this.status);
 		}
-	}
+	};
+
+	xhr.onerror = function() {
+		if (onNetworkError != null)
+			onNetworkError(xhr.status);
+	};
 	xhr.send(queryParams);
 }

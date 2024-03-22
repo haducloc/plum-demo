@@ -54,12 +54,12 @@
 		<dependency>
 			<groupId>com.appslandia</groupId>
 			<artifactId>appslandia-common</artifactId>
-			<version>19.5.0</version>
+			<version>19.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.appslandia</groupId>
 			<artifactId>appslandia-plum</artifactId>
-			<version>18.2.0</version>
+			<version>18.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.platform</groupId>
