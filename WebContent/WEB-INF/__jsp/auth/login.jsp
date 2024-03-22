@@ -16,7 +16,7 @@
       <div class="card">
         <div class="card-body">
 
-          <t:errors listClass="px-4 py-2 rounded" fieldOrders="username,password" />
+          <t:errors divClass="alert alert-danger" listClass="mb-0" fieldOrders="username,password" />
 
           <t:form action="login" controller="auth" method="post" __returnUrl="${param.returnUrl}">
             <div class="mb-3">

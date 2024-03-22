@@ -13,10 +13,10 @@ import jakarta.security.enterprise.credential.Credential;
 @ApplicationScoped
 public class AppIdentityStore extends UsernamePasswordIdentityStore {
 
-    @Override
-    public Class<? extends Credential> getAcceptedCredentialType() {
+  @Override
+  public Class<? extends Credential> getAcceptedCredentialType() {
 
-	// This IdentityStore only accepts AppCredential type.
-	return AppCredential.class;
-    }
+    // This IdentityStore only accepts AppCredential type.
+    return AppCredential.class;
+  }
 }

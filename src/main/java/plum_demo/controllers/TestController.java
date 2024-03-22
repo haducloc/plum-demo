@@ -20,36 +20,36 @@ import plum_demo.entities.User;
 @Controller
 public class TestController {
 
-    @HttpGet
-    public List<User> index() throws Exception {
-	return createUsers();
-    }
+  @HttpGet
+  public List<User> index() throws Exception {
+    return createUsers();
+  }
 
-    @HttpGet
-    @EnableGzip
-    public List<User> gzip() throws Exception {
-	return createUsers();
-    }
+  @HttpGet
+  @EnableGzip
+  public List<User> gzip() throws Exception {
+    return createUsers();
+  }
 
-    @HttpGet
-    @EnableEtag
-    public List<User> etag() throws Exception {
-	return createUsers();
-    }
+  @HttpGet
+  @EnableEtag
+  public List<User> etag() throws Exception {
+    return createUsers();
+  }
 
-    @HttpGet
-    @EnableGzip
-    @EnableEtag
-    public List<User> gzip_etag() throws Exception {
-	return createUsers();
-    }
+  @HttpGet
+  @EnableGzip
+  @EnableEtag
+  public List<User> gzip_etag() throws Exception {
+    return createUsers();
+  }
 
-    protected List<User> createUsers() {
-	List<User> list = new ArrayList<>(5000);
+  protected List<User> createUsers() {
+    List<User> list = new ArrayList<>(5000);
 
-	for (int i = 0; i < 5000; i++) {
-	    list.add(new User("username-" + i, "password-" + i, "userroles-" + i));
-	}
-	return list;
+    for (int i = 0; i < 5000; i++) {
+      list.add(new User("username-" + i, "password-" + i, "userroles-" + i));
     }
+    return list;
+  }
 }

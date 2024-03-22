@@ -16,7 +16,7 @@
       <div class="card">
         <div class="card-body">
 
-          <t:errors listClass="px-4 py-2 rounded" fieldOrders="username,password,roles,active" />
+          <t:errors divClass="alert alert-danger" listClass="mb-0" fieldOrders="username,password,roles,active" />
 
           <t:form id="form1" action="edit" __userId="${model.userId}" method="post">
 

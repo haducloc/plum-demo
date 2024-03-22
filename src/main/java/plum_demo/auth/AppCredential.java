@@ -9,7 +9,7 @@ import jakarta.security.enterprise.credential.UsernamePasswordCredential;
  */
 public class AppCredential extends UsernamePasswordCredential {
 
-    public AppCredential(String username, String password) {
-	super(username, password);
-    }
+  public AppCredential(String username, String password) {
+    super(username, password);
+  }
 }

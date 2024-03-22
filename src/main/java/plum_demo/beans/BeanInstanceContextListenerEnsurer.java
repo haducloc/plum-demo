@@ -17,19 +17,20 @@ import jakarta.servlet.ServletContext;
 @ApplicationScoped
 public class BeanInstanceContextListenerEnsurer {
 
-    @Inject
-    protected AppLogger appLogger;
+  @Inject
+  protected AppLogger appLogger;
 
-    // ISSUE: https://github.com/payara/Payara/issues/5968
+  // ISSUE: https://github.com/payara/Payara/issues/5968
 
-    // BeanInstanceContextListener won't get executed if PAYARA used
-    // Reason: PAYARA doesn't execute @Observes @Initialized(ApplicationScoped.class) ServletContext that included inside
-    // Jar/library files
+  // BeanInstanceContextListener won't get executed if PAYARA used
+  // Reason: PAYARA doesn't execute @Observes
+  // @Initialized(ApplicationScoped.class) ServletContext that included inside
+  // Jar/library files
 
-    // BeanInstanceContextListener will get executed if WIFDFLY used
-    // so, we don't need this BeanInstanceContextListenerEnsurer for WILDFLY
+  // BeanInstanceContextListener will get executed if WIFDFLY used
+  // so, we don't need this BeanInstanceContextListenerEnsurer for WILDFLY
 
-    public void contextDestroyed(@Observes @Destroyed(ApplicationScoped.class) ServletContext sc) {
-	BeanInstanceContextListener.destroyBeanInstances(sc);
-    }
+  public void contextDestroyed(@Observes @Destroyed(ApplicationScoped.class) ServletContext sc) {
+    BeanInstanceContextListener.destroyBeanInstances(sc);
+  }
 }

@@ -17,20 +17,22 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ErrorServlet", urlPatterns = "/error")
 public class ErrorServletImpl extends ErrorServlet {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Override
-    protected String getErrorJsp(HttpServletRequest request, RequestContext requestContext) {
+  @Override
+  protected String getErrorJsp(HttpServletRequest request, RequestContext requestContext) {
 
-	// Can return JSP error page based on the current module: requestContext.getModule()
+    // Can return JSP error page based on the current module:
+    // requestContext.getModule()
 
-	return "/error.jsp";
-    }
+    return "/error.jsp";
+  }
 
-    @Override
-    protected void writeErrorDev(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	// super.writeErrorDev(request, response);
+  @Override
+  protected void writeErrorDev(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // super.writeErrorDev(request, response);
 
-	super.writeErrorProd(request, response);
-    }
+    super.writeErrorProd(request, response);
+  }
 }

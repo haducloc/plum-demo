@@ -23,87 +23,89 @@ import plum_demo.utils.DbUtils;
 @ApplicationScoped
 public class UserService {
 
-    @PersistenceUnit(unitName = DbUtils.PU_MYDB)
-    protected EntityManagerFactory emf;
+  @PersistenceUnit(unitName = DbUtils.PU_MYDB)
+  protected EntityManagerFactory emf;
 
-    public User getByPk(int userId) {
-	try (EntityManager em = emf.createEntityManager()) {
-	    return em.find(User.class, userId);
-	}
+  public User getByPk(int userId) {
+    try (EntityManager em = emf.createEntityManager()) {
+      return em.find(User.class, userId);
     }
+  }
 
-    public User getByUsername(String username) {
-	try (EntityManager em = emf.createEntityManager()) {
-	    TypedQuery<User> q = em.createQuery("SELECT e FROM User e WHERE e.username=:username", User.class);
+  public User getByUsername(String username) {
+    try (EntityManager em = emf.createEntityManager()) {
+      TypedQuery<User> q = em.createQuery("SELECT e FROM User e WHERE e.username=:username", User.class);
 
-	    try {
-		return q.setParameter("username", username).getSingleResult();
-	    } catch (NoResultException ex) {
-		return null;
-	    }
-	}
+      try {
+        return q.setParameter("username", username).getSingleResult();
+      } catch (NoResultException ex) {
+        return null;
+      }
     }
+  }
 
-    public List<User> getAll() {
-	try (EntityManager em = emf.createEntityManager()) {
-	    TypedQuery<User> q = em.createQuery("SELECT e FROM User e", User.class);
+  public List<User> getAll() {
+    try (EntityManager em = emf.createEntityManager()) {
+      TypedQuery<User> q = em.createQuery("SELECT e FROM User e", User.class);
 
-	    return q.getResultList();
-	}
+      return q.getResultList();
     }
+  }
 
-    public int save(User user) {
-	try (EntityManager em = emf.createEntityManager()) {
-	    EntityTransaction tx = null;
+  public int save(User user) {
+    try (EntityManager em = emf.createEntityManager()) {
+      EntityTransaction tx = null;
 
-	    try {
-		tx = em.getTransaction();
-		tx.begin();
+      try {
+        tx = em.getTransaction();
+        tx.begin();
 
-		if (user.getUserId() == null) {
-		    em.persist(user);
+        if (user.getUserId() == null) {
+          em.persist(user);
 
-		} else {
-		    User dbUser = em.find(User.class, user.getUserId());
+        } else {
+          User dbUser = em.find(User.class, user.getUserId());
 
-		    Asserts.notNull(dbUser);
-		    Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to modify the ADMIN user.");
+          Asserts.notNull(dbUser);
+          Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()),
+              "Unallowed to modify the ADMIN user.");
 
-		    ModelUtils.copyProps(dbUser, user, "roles", "active", "dob", "salary");
-		}
-		tx.commit();
+          ModelUtils.copyProps(dbUser, user, "roles", "active", "dob", "salary");
+        }
+        tx.commit();
 
-	    } catch (Exception ex) {
-		if (tx != null && tx.isActive())
-		    tx.rollback();
+      } catch (Exception ex) {
+        if (tx != null && tx.isActive())
+          tx.rollback();
 
-		throw ex;
-	    }
-	}
-	return user.getUserId();
+        throw ex;
+      }
     }
+    return user.getUserId();
+  }
 
-    public void remove(int userId) {
-	try (EntityManager em = emf.createEntityManager()) {
-	    EntityTransaction tx = null;
+  public void remove(int userId) {
+    try (EntityManager em = emf.createEntityManager()) {
+      EntityTransaction tx = null;
 
-	    try {
-		tx = em.getTransaction();
-		tx.begin();
+      try {
+        tx = em.getTransaction();
+        tx.begin();
 
-		User dbUser = em.getReference(User.class, userId);
-		Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()), "Unallowed to remove the ADMIN user.");
+        User dbUser = em.getReference(User.class, userId);
+        Asserts.isTrue(!DbUtils.USER_ADMIN.equalsIgnoreCase(dbUser.getUsername()),
+            "Unallowed to remove the ADMIN user.");
 
-		em.remove(dbUser);
+        em.remove(dbUser);
 
-		tx.commit();
+        tx.commit();
 
-	    } catch (Exception ex) {
-		if (tx != null && tx.isActive())
-		    tx.rollback();
+      } catch (Exception ex) {
+        if (tx != null && tx.isActive())
+          tx.rollback();
 
-		throw ex;
-	    }
-	}
+        throw ex;
+      }
     }
+  }
 }

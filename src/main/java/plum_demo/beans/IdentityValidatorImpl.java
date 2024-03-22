@@ -1,7 +1,6 @@
 package plum_demo.beans;
 
 import com.appslandia.common.base.Out;
-import com.appslandia.common.crypto.PasswordDigester;
 import com.appslandia.plum.base.IdentityValidator;
 import com.appslandia.plum.base.InvalidAuthResult;
 import com.appslandia.plum.base.PrincipalRoles;
@@ -14,6 +13,7 @@ import jakarta.interceptor.Interceptor;
 import plum_demo.auth.AppPrincipal;
 import plum_demo.entities.User;
 import plum_demo.services.UserService;
+import plum_demo.utils.PasswordUtils;
 
 /**
  *
@@ -25,37 +25,37 @@ import plum_demo.services.UserService;
 @Priority(Interceptor.Priority.APPLICATION)
 public class IdentityValidatorImpl implements IdentityValidator {
 
-    @Inject
-    protected UserService userService;
+  @Inject
+  protected UserService userService;
 
-    @Override
-    public PrincipalRoles validate(String module, String identity, Out<String> invalidCode) {
-	// Find user
-	User user = userService.getByUsername(identity);
+  @Override
+  public PrincipalRoles validate(String module, String identity, Out<String> invalidCode) {
+    // Find user
+    User user = userService.getByUsername(identity);
 
-	if (user == null) {
-	    invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
-	    return null;
-	}
-
-	return new PrincipalRoles(new AppPrincipal(user.getUserId(), user.getUsername()), user.getRoles());
+    if (user == null) {
+      invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
+      return null;
     }
 
-    @Override
-    public PrincipalRoles validate(String module, String username, String password, Out<String> invalidCode) {
-	// Find user
-	User user = userService.getByUsername(username);
+    return new PrincipalRoles(new AppPrincipal(user.getUserId(), user.getUsername()), user.getRoles());
+  }
 
-	if (user == null) {
-	    invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
-	    return null;
-	}
+  @Override
+  public PrincipalRoles validate(String module, String username, String password, Out<String> invalidCode) {
+    // Find user
+    User user = userService.getByUsername(username);
 
-	// Validate credential?
-	if (user == null || !PasswordDigester.DEFAULT.verify(password, user.getPassword())) {
-	    invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
-	    return null;
-	}
-	return new PrincipalRoles(new AppPrincipal(user.getUserId(), user.getUsername()), user.getRoles());
+    if (user == null) {
+      invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
+      return null;
     }
+
+    // Validate credential?
+    if (user == null || !PasswordUtils.verifyPassword(password, user.getPassword())) {
+      invalidCode.value = InvalidAuthResult.CREDENTIAL_INVALID.getCode();
+      return null;
+    }
+    return new PrincipalRoles(new AppPrincipal(user.getUserId(), user.getUsername()), user.getRoles());
+  }
 }

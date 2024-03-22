@@ -77,12 +77,11 @@
 
     <c:if test="${empty requestScope['jakarta.servlet.error.servlet_name'] and not empty messages}">
       <div class="container mb-4">
-        <div class="messages-wrapper">
-          <t:messages listClass="mb-0 px-4 py-2 rounded" type="error" />
-          <t:messages listClass="mb-0 px-4 py-2 rounded" type="warn" />
-          <t:messages listClass="mb-0 px-4 py-2 rounded" type="notice" />          
-          <t:messages listClass="mb-0 px-4 py-2 rounded" type="info" />
-        </div>
+         <t:messages divClass="alert alert-danger" listClass="mb-0" type="error" />
+         <t:messages divClass="alert alert-warning" listClass="mb-0" type="warn" />
+         <t:messages divClass="alert alert-secondary" listClass="mb-0" type="notice" />          
+         <t:messages divClass="alert alert-info" listClass="mb-0" type="info" />
+         <t:messages divClass="alert alert-success" listClass="mb-0" type="success" />
       </div>
     </c:if>
 

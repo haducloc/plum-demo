@@ -21,8 +21,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 @Home
 public class MainController {
 
-    @HttpGet
-    public ActionResult index(RequestAccessor request) throws Exception {
-	return JspResult.DEFAULT;
-    }
+  @HttpGet
+  public ActionResult index(RequestAccessor request) throws Exception {
+    return JspResult.DEFAULT;
+  }
 }
