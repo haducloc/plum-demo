@@ -97,7 +97,7 @@ public class UserController {
       if (request.isFormAction("remove")) {
         this.userService.remove(model.getUserId());
 
-        request.getMessages().addNotice(request.res("entity.removed_successfully", request.res("user")));
+        request.getMessages().addSuccess(request.res("entity.removed_successfully", request.res("user")));
       }
       // Save Action
       else {
@@ -110,7 +110,7 @@ public class UserController {
         }
         this.userService.save(user);
 
-        request.getMessages().addNotice(request.res("entity.saved_successfully", request.res("user")));
+        request.getMessages().addSuccess(request.res("entity.saved_successfully", request.res("user")));
       }
 
       return new RedirectResult("index");
