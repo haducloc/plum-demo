@@ -1,0 +1,10 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="jakarta.faces.facelets" xmlns:t="http://www.appslandia.com/facelet/tags"
+  xmlns:fn="http://www.appslandia.com/facelet/functions">
+
+  <div class="row mb-4">
+    <ul class="mb-0 px-4 py-2 rounded messages-error">
+      <li>${requestScope["com.appslandia.plum.base.Problem"].title}</li>
+    </ul>
+  </div>
+
+</ui:composition>

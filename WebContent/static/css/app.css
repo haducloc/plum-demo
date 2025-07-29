@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+label.l-label-required::after {
+    content: " *";
+    color: #dc3545;
+    font-weight: bolder;
+}
+
+input.l-field-error, select.l-field-error, textarea.l-field-error {
+	border: 1px solid #dc3545 !important;
+}
+
+div.l-choice-error {
+	border: 1px solid #dc3545 !important;
+}
+
+.l-error-msg {
+	font-size: 0.875rem;
+	color: #dc3545;
+}
+
+.l-d-none {
+	display: none !important;
+}

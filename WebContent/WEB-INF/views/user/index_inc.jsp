@@ -1,0 +1,93 @@
+<%@ taglib prefix="t" uri="http://www.appslandia.com/jstl/tags"%>
+<%@ taglib prefix="fn" uri="http://www.appslandia.com/jstl/functions"%>
+
+<div class="row">
+  <div class="col mb-4">
+
+    <t:form id="form1" action="index" ____page_index="${model.pageIndex}" ____record_count="${model.recordCount}" method="get"
+      clazz="row gy-2 gx-3 align-items-center">
+
+      <div class="col-auto">
+        <t:label path="username" clazz="visually-hidden" labelKey="user_index_model.username" />
+        <t:input path="username" clazz="form-control" placeholder="username" />
+      </div>
+
+      <div class="col-auto">
+        <t:choiceBox path="inclInactive" clazz="form-control">
+          <div class="form-check">
+            <t:choiceInput value="true" clazz="form-check-input" />
+            <t:choiceLabel value="true" clazz="form-check-label" labelKey="user_index_model.incl_inactive" />
+          </div>
+        </t:choiceBox>
+      </div>
+
+      <div class="col-auto">
+        <t:button type="submit" id="btnSearch" clazz="btn btn-primary px-4 me-3" labelKey="label.search" />
+      </div>
+
+    </t:form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col mb-4">
+
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th scope="col" colspan="4"><t:actionLink action="edit" clazz="btn btn-sm btn-secondary">+</t:actionLink></th>
+          </tr>
+          <tr>
+            <th scope="col">${fn:res(ctx, "user.username")}</th>
+            <th scope="col">${fn:res(ctx, "user.roles")}</th>
+            <th scope="col">${fn:res(ctx, "user.active")}</th>
+            <th scope="col">${fn:res(ctx, "user.dob")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <t:iterate items="${users}" var="item">
+            <tr>
+              <td><t:actionLink action="edit" __userId="${item.userId}">${fn:esc(item.username)}</t:actionLink></td>
+              <td>${item.roles}</td>
+              <td><t:checkMark value="${item.active}" /></td>
+              <td>${fn:fmtdt(ctx, item.dob)}</td>
+            </tr>
+          </t:iterate>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <ul class="pagination m-2">
+
+                <t:iterate items="${__pager_model.items}" var="item">
+                  <t:if test="${item.prevType}">
+                    <li class="page-item"><t:actionLink action="index" __inclInactive="${model.inclInactive}" ____page_index="${item.index}"
+                        ____record_count="${model.recordCount}" clazz="page-link">
+                        ${fn:res(ctx, "label.prev")}
+                      </t:actionLink></li>
+                  </t:if>
+                  <t:if test="${item.nextType}">
+                    <li class="page-item"><t:actionLink action="index" __inclInactive="${model.inclInactive}" ____page_index="${item.index}"
+                        ____record_count="${model.recordCount}" clazz="page-link">
+                        ${fn:res(ctx, "label.next")}
+                      </t:actionLink></li>
+                  </t:if>
+                  <t:if test="${item.dotType}">
+                    <li class="page-item"><t:sym name="hellip" clazz="page-link" /></li>
+                  </t:if>
+                  <t:if test="${item.indexType}">
+                    <li class="page-item ${fn:ifcls(model.pageIndex eq item.index, 'active')}"><t:actionLink action="index"
+                        __inclInactive="${model.inclInactive}" ____page_index="${item.index}" ____record_count="${model.recordCount}" clazz="page-link">
+                        ${item.index}
+                      </t:actionLink></li>
+                  </t:if>
+                </t:iterate>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

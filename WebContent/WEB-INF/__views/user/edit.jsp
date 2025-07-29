@@ -1,0 +1,94 @@
+<!-- @variables
+  page.title=${fn:res(ctx, "page.user_edit")}
+  __layout=layout
+ -->
+<%@ taglib prefix="t" uri="http://www.appslandia.com/jstl/tags"%>
+<%@ taglib prefix="fn" uri="http://www.appslandia.com/jstl/functions"%>
+
+<div class="row">
+  <div class="col mb-4">
+
+    <div class="card">
+      <div class="card-body">
+
+        <t:form id="form1" action="edit" __userId="${model.userId}" method="post" model="model">
+          <t:csrfId />
+          <t:formAction />
+
+          <t:formErrors modelOnly="false" fieldOrder="username,password,roles,active,dob" clazz="alert alert-danger" listClass="mb-0" />
+
+          <div class="mb-3">
+            <t:label path="username" labelKey="user.username" clazz="form-label" required="true" />
+            <t:input path="username" clazz="form-control" readonly="${not empty model.userId}" />
+          </div>
+
+          <div class="mb-3">
+            <t:label path="password" labelKey="user.password" clazz="form-label" required="true" />
+
+            <t:if test="${empty model.userId}">
+              <t:input type="password" path="password" clazz="form-control" />
+            </t:if>
+            <t:if test="${not empty model.userId}">
+              <t:actionLink action="resetpwd" controller="user" clazz="link-secondary d-block" labelKey="label.reset_password" />
+            </t:if>
+          </div>
+
+          <div class="mb-3">
+            <t:label path="roles" skipFor="true" labelKey="user.roles" clazz="form-label" />
+            <t:choiceBox path="roles" multiple="true" clazz="form-control">
+
+              <t:iterate items="${rolesDS}">
+                <div class="form-check form-check-inline">
+                  <t:choiceInput value="${item.value}" clazz="form-check-input" />
+                  <t:choiceLabel value="${item.value}" clazz="form-check-label">${fn:esc(item.displayName)}</t:choiceLabel>
+                </div>
+              </t:iterate>
+            </t:choiceBox>
+          </div>
+
+          <div class="mb-3">
+            <t:label path="active" labelKey="user.active" clazz="form-label" />
+
+            <t:choiceBox path="active" clazz="form-control">
+              <div class="form-check">
+                <t:choiceInput value="true" clazz="form-check-input" />
+                <t:choiceLabel value="true" clazz="form-check-label" labelKey="user.active" />
+              </div>
+            </t:choiceBox>
+          </div>
+
+          <div class="mb-3">
+            <t:label path="dob" labelKey="user.dob" clazz="form-label" />
+            <t:input type="date" path="dob" clazz="form-control" />
+          </div>
+
+          <t:button type="submit" id="btnSave" clazz="btn btn-primary px-4 me-3" labelKey="label.save" />
+          <t:button type="button" id="btnRemove" data-action="remove" clazz="btn btn-danger px-4 form-action" labelKey="label.remove"
+            rendered="${not empty model.userId}" />
+        </t:form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- @jsSection begin -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelectorAll("button.form-action").forEach(function(button) {
+      button.addEventListener("click", function(event) {
+
+        const actionValue = this.getAttribute("data-action");
+        const formAction = this.form.querySelector("#__form_action");
+
+        if (formAction) {
+          formAction.value = actionValue;
+        }
+        this.form.submit();
+      });
+    });
+  });
+</script>
+<!-- @jsSection end -->
