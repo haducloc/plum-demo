@@ -4,14 +4,14 @@
 - Java MVC Architecture
 - CRUD operations
 - Login, logout, and "Remember Me" support
-- Authorization
-- CSRF protection
-- UI Form controls
-- JSP/JSTL or Facelets tags/functions
-- Main layout templates (JSP and Facelets)
+- Authorization, and CSRF
 - Multi languages
 - Externalized messages
-- Configure HTTP headers, Compression, ETag, ASYNC, etc.
+- HTTP headers, Compression, ETag, ASYNC, etc.
+- Main layout templates (JSP and Facelets)
+- UI Form controls
+- JSP/JSTL or Facelets tags/functions
+- Paging/Sorting tags
 
 ## Prerequisites
 
