@@ -35,7 +35,7 @@
 5. To stop Payara, press:  
    `Ctrl+C`
 
-## Facelet Views
+## Test Facelet Views
 
-1. Set `config.view_suffixes=xhtml,.jsp` in `config.properties`.
+1. In `config.properties`, change `config.view_suffixes` from `.jsp,.xhtml` to `.xhtml,.jsp`.
 2. Start the application as above.
