@@ -76,7 +76,7 @@ public class TestController extends ControllerBase {
 
   protected List<SelectItem> createList(HttpRequestFacade request) {
     var listSize = request.getParameter("listSize");
-    var size = ParseUtils.parseInt(listSize);
+    var size = ParseUtils.parseInt(listSize, 5000);
 
     var list = new ArrayList<SelectItem>(size);
     for (int i = 1; i <= size; i++) {
