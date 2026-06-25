@@ -14,7 +14,7 @@
 		<version.log4j-api>2.25.3</version.log4j-api>
 		<version.appslandia-common>19.50.0</version.appslandia-common>
 		<version.appslandia-plum>20.0.0</version.appslandia-plum>
-		<version.appslandia-page-layout>1.4.0</version.appslandia-page-layout>
+		<version.appslandia-page-layout>1.5.0</version.appslandia-page-layout>
 		<version.brotli4j>1.23.0</version.brotli4j>
 		<version.owasp-java-html-sanitizer>20260313.1</version.owasp-java-html-sanitizer>
 		<version.jakarta.jakartaee-api>11.0.0</version.jakarta.jakartaee-api>
@@ -51,7 +51,7 @@
 					<viewSuffixes>.jsp,.jspx,.xhtml,.peb</viewSuffixes>
 					<debugVariables>false</debugVariables>
 					<removeBlankLines>false</removeBlankLines>
-					<skipPlugin>false</skipPlugin>
+					<disablePlugin>false</disablePlugin>
 				</configuration>
 				<executions>
 					<execution>
@@ -68,7 +68,7 @@
 				<artifactId>payara-micro-maven-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<payaraMicroVersion>7.2026.5</payaraMicroVersion>
+					<payaraMicroVersion>7.2026.6</payaraMicroVersion>
 					<deployWar>true</deployWar>
 					<contextRoot>plum-demo</contextRoot>
 				</configuration>
