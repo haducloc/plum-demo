@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="jakarta.faces.facelets" 
+  xmlns:t="http://www.appslandia.com/facelet/tags"
+  xmlns:fn="http://www.appslandia.com/facelet/functions">
+
+<!-- @variables
+  page.title=${fn:res(ctx, "page.user_index")}
+  __layout=layout
+-->
+
+<div class="row">
+  <div class="col mb-4">
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+
+        <t:form id="form1" action="index" method="get" ____page_index="${model.pageIndex}" ____record_count="${model.recordCount}" clazz="row g-3">
+
+          <div class="col-md-6">
+            <t:label path="divisionId" labelKey="user.division_id" clazz="form-label" />
+            <t:select path="divisionId" items="${divisionDS}" optBlank="" clazz="form-select" />
+          </div>
+
+          <div class="col-md-6">
+            <t:label path="username" labelKey="user.username" clazz="form-label" />
+            <t:input path="username" clazz="form-control" />
+          </div>
+
+          <div class="col-12">
+            <t:button id="btnSearch" type="submit" labelKey="label.search" clazz="btn btn-primary px-4" />
+          </div>
+        </t:form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col mb-4">
+
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th scope="col" colspan="5"><t:actionLink action="edit" clazz="btn btn-sm btn-secondary">+</t:actionLink></th>
+          </tr>
+
+          <tr>
+            <t:sortTh action="index" sortBy="username" sortModel="${__sort_model}" pagerModel="${__pager_model}" __divisionId="${model.divisionId}"
+              __username="${model.username}">
+              ${fn:res(ctx, "user.username")}
+            </t:sortTh>
+
+            <th scope="col">${fn:res(ctx, "user.active")}</th>
+            <th scope="col">${fn:res(ctx, "user.roles")}</th>
+
+            <t:sortTh action="index" sortBy="dob" sortModel="${__sort_model}" pagerModel="${__pager_model}" __divisionId="${model.divisionId}"
+              __username="${model.username}">
+              ${fn:res(ctx, "user.dob")}
+            </t:sortTh>
+
+            <th scope="col">${fn:res(ctx, "user.division_id")}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <t:iterate items="${users}" var="item">
+            <tr>
+              <td><t:actionLink action="edit" __userId="${item.userId}">${fn:esc(item.username)}</t:actionLink></td>
+              <td><t:checkMark value="${item.active}" /></td>
+              <td>${fn:esc(item.roles)}</td>
+              <td>${fn:fmtDt(ctx, item.dob)}</td>
+              <td><t:fmtConst value="${item.divisionId}" fmt="divisions" /></td>
+            </tr>
+          </t:iterate>
+        </tbody>
+
+        <t:wrap tag="tfoot" rendered="${__pager_model.pageCount gt 1}">
+          <tr>
+            <td colspan="5">
+              <t:pager model="${__pager_model}" action="index" __divisionId="${model.divisionId}" __username="${model.username}"
+                nextLabel="${fn:__res(ctx, 'label.next')}" prevLabel="${fn:__res(ctx, 'label.prev')}" clazz="pagination justify-content-center m-2 mb-0" />
+            </td>
+          </tr>
+        </t:wrap>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+</ui:composition>
+
+<!-- @jsSection begin -->
+<script type="text/javascript" nonce="${ctx.nonce}">
+  document.addEventListener("DOMContentLoaded", function() {
+    // TODO
+  });
+</script>
+<!-- @jsSection end -->
