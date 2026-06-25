@@ -1,17 +1,17 @@
 # AppsLandia Plum Demo
 
 ## Features
-- Java MVC Architecture
-- CRUD operations
-- Login, logout, and "Remember Me" support
-- Authorization, and CSRF
-- Multi languages
-- Externalized messages
-- HTTP headers, Compression, ETag, ASYNC, etc.
-- Main layout templates (JSP and Facelets)
-- UI Form controls
-- JSP/JSTL or Facelets tags/functions
-- Paging/Sorting tags
+- Java MVC architecture
+- Full CRUD operations
+- Authentication (login, logout, and "Remember Me")
+- Authorization and CSRF protection
+- Internationalization (i18n) and multi-language support
+- Externalized messages and configuration
+- HTTP optimizations (security headers, compression, ETag, asynchronous processing, etc.)
+- Reusable layout templates for JSP and Facelets
+- Rich UI form controls
+- Custom JSP/JSTL and Facelets tags/functions
+- Paging and sorting components
 
 ## Prerequisites
 
