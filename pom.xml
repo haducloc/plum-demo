@@ -13,7 +13,7 @@
 		<version.maven-war-plugin>3.4.0</version.maven-war-plugin>
 		<version.log4j-api>2.25.3</version.log4j-api>
 		<version.appslandia-common>19.50.0</version.appslandia-common>
-		<version.appslandia-plum>20.0.0</version.appslandia-plum>
+		<version.appslandia-plum>20.1.0</version.appslandia-plum>
 		<version.appslandia-page-layout>1.5.0</version.appslandia-page-layout>
 		<version.brotli4j>1.23.0</version.brotli4j>
 		<version.owasp-java-html-sanitizer>20260313.1</version.owasp-java-html-sanitizer>
