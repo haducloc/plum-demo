@@ -96,24 +96,6 @@ public class AppPolicyProviderImpl implements CDIFactory<HeaderPolicyProvider> {
         Cache-Control: public, max-age=1209600, must-revalidate
         """));
 
-    // API (ETag): 1 week
-    impl.registerHttpPolicy(new HeaderPolicy().setIncludePaths("""
-        /test/list3, /test/list4
-        /test/list31, /test/list41
-
-        """).setHeaders("""
-        Cache-Control: private, max-age=604800, must-revalidate
-        """));
-
-    // API (No ETag): 1 day
-    impl.registerHttpPolicy(new HeaderPolicy().setIncludePaths("""
-        /test/list1, /test/list2
-        /test/list11, /test/list21
-
-        """).setHeaders("""
-        Cache-Control: private, max-age=86400
-        """));
-
     return impl;
   }
 
