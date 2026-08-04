@@ -1,0 +1,61 @@
+@charset "ISO-8859-1";
+
+label.l-label-required::after {
+	content: " *";
+	color: #dc3545;
+	font-weight: bolder;
+}
+
+input.l-field-error, select.l-field-error, textarea.l-field-error {
+	border-color: #dc3545 !important;
+}
+
+div.l-error-msg {
+	font-size: 0.875rem;
+	color: #dc3545;
+	margin-top: 0.25rem;
+}
+
+div.form-choice-group {
+	width: 100%;
+	padding: .375rem .75rem;
+	line-height: 1.5;
+	color: var(--bs-body-color);
+	background-color: var(--bs-body-bg);
+	border: var(--bs-border-width) solid var(--bs-border-color);
+	border-radius: var(--bs-border-radius);
+}
+
+div.form-choice-group.l-field-error {
+	border-color: #dc3545 !important;
+}
+
+th.l-sortable {
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+}
+
+th.l-sortable::after {
+	display: inline-block;
+	width: 1em;
+	margin-left: 0.375rem;
+	font-size: 0.75rem;
+	opacity: 0.75;
+	text-align: center;
+	vertical-align: middle;
+}
+
+th.l-sortable.l-sort-none::after {
+	content: "\2195";
+}
+
+th.l-sortable.l-sort-asc::after {
+	content: "\25B2";
+	opacity: 1;
+}
+
+th.l-sortable.l-sort-desc::after {
+	content: "\25BC";
+	opacity: 1;
+}
